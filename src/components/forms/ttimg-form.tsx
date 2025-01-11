@@ -1,5 +1,5 @@
-import React from 'react'
-import Form from '../ui/form'
+import React from 'react';
+import Form from '../ui/form';
 import Button from '../ui/button';
 
 interface TextToImageFormProps {
@@ -9,7 +9,12 @@ interface TextToImageFormProps {
   loading: boolean;
 }
 
-export default function TextToImageForm({ handleFormSubmit, setInput, loading, input }: TextToImageFormProps) {
+export default function TextToImageForm({
+  handleFormSubmit,
+  setInput,
+  loading,
+  input,
+}: TextToImageFormProps) {
   return (
     <Form handleFormSubmit={handleFormSubmit}>
       <input
@@ -19,10 +24,7 @@ export default function TextToImageForm({ handleFormSubmit, setInput, loading, i
         onChange={setInput}
         disabled={loading}
       />
-      <Button
-        loading={loading}
-        disabled={!input || loading}
-      />
+      <Button loading={loading} disabled={!input || loading} />
     </Form>
-  )
+  );
 }

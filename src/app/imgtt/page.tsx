@@ -1,7 +1,7 @@
-"use client"
+'use client';
 
+import React, { useState } from 'react';
 import { Message } from '@/type';
-import { useState } from 'react';
 
 import ImageToTextForm from '@/components/forms/imgtt-form';
 import Messages from '@/components/ui/messages';
@@ -65,7 +65,7 @@ export default function ImageToText() {
           },
         ]);
       }
-    } catch (error) {
+    } catch {
       setMessages((prev: Message[]) => [
         ...prev,
         {
@@ -91,5 +91,5 @@ export default function ImageToText() {
         loading={loading}
       />
     </>
-  )
+  );
 }

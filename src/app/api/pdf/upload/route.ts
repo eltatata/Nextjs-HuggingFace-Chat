@@ -1,12 +1,12 @@
-import fs from "fs/promises";
-import path from "path";
+import fs from 'fs/promises';
+import path from 'path';
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
     const data = await req.formData();
-    const file = data.get("file") as File;
+    const file = data.get('file') as File;
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
@@ -17,12 +17,14 @@ export async function POST(req: NextRequest) {
 
     await fs.writeFile(filePath, buffer);
 
-    console.log("File uploaded");
+    console.log('File uploaded');
 
     return NextResponse.json({
-      msg: "Archivo subido correctamente"
+      msg: 'Archivo subido correctamente',
     });
-  } catch (error: any) {
-    return NextResponse.json({ err: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
   }
 }

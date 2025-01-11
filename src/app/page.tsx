@@ -1,12 +1,15 @@
-"use client";
+'use client';
+
+import React from 'react';
 
 import { useChat } from '@ai-sdk/react';
 
-import ChatForm from "@/components/forms/chat-form";
-import Messages from "@/components/ui/messages";
+import ChatForm from '@/components/forms/chat-form';
+import Messages from '@/components/ui/messages';
 
 export default function Home() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
+  const { messages, input, handleInputChange, handleSubmit, isLoading } =
+    useChat();
 
   return (
     <>

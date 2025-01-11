@@ -1,32 +1,41 @@
-import { Message as MessageType } from "@/type"
+import React from 'react';
 
-import { Bot, User } from "lucide-react"
+import { Message as MessageType } from '@/type';
+
+import { Bot, User } from 'lucide-react';
 
 interface MessageProps {
-  message: MessageType
+  message: MessageType;
 }
 
 export default function Message({ message }: MessageProps) {
   return (
     <div className="border-b space-y-2 p-5">
-      <div className={`flex items-center ${message.role === 'user' ? 'justify-end' : 'justify-start'} gap-2 `}>
+      <div
+        className={`flex items-center ${message.role === 'user' ? 'justify-end' : 'justify-start'} gap-2 `}
+      >
         {message.role === 'user' ? <User /> : <Bot />}
-        <p className={`${message.role === 'user' ? 'text-green-500' : 'text-blue-500'} font-bold text-lg`}>
+        <p
+          className={`${message.role === 'user' ? 'text-green-500' : 'text-blue-500'} font-bold text-lg`}
+        >
           {message.role}
         </p>
       </div>
-      <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+      <div
+        className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+      >
         {message.content.startsWith('blob') ? (
           <div className="w-72 h-52">
-            <img src={message.content} alt="preview" className="w-full h-full object-cover rounded-lg" />
+            <img
+              src={message.content}
+              alt="preview"
+              className="w-full h-full object-cover rounded-lg"
+            />
           </div>
         ) : (
-          <p className="font-medium">
-            {message.content}
-          </p>
-        )
-        }
+          <p className="font-medium">{message.content}</p>
+        )}
       </div>
-    </div >
-  )
+    </div>
+  );
 }

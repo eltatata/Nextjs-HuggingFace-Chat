@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
+import React, { useState } from 'react';
 import { Message } from '@/type';
-import { useState } from 'react';
 
-import Messages from "@/components/ui/messages"
+import Messages from '@/components/ui/messages';
 import TextToImageForm from '@/components/forms/ttimg-form';
 
 export default function TextToImage() {
@@ -66,5 +66,5 @@ export default function TextToImage() {
         input={input}
       />
     </>
-  )
+  );
 }

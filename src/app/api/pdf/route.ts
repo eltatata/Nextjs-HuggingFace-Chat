@@ -1,19 +1,20 @@
-import path from "path";
-
-import { NextRequest } from "next/server";
+import { NextRequest } from 'next/server';
 
 import { LangChainAdapter, StreamingTextResponse } from 'ai';
 
-import { HuggingFaceInference } from "@langchain/community/llms/hf";
-import { RunnablePassthrough, RunnableSequence } from "@langchain/core/runnables";
-import { StringOutputParser } from "@langchain/core/output_parsers";
-import { formatDocumentsAsString } from "langchain/util/document";
+import { HuggingFaceInference } from '@langchain/community/llms/hf';
+import {
+  RunnablePassthrough,
+  RunnableSequence,
+} from '@langchain/core/runnables';
+import { StringOutputParser } from '@langchain/core/output_parsers';
+import { formatDocumentsAsString } from 'langchain/util/document';
 
-import { prompt } from "@/utils/prompt";
-import { retriever } from "@/utils/retriever";
+import { prompt } from '@/utils/prompt';
+import { retriever } from '@/utils/retriever';
 
 const llm = new HuggingFaceInference({
-  model: "meta-llama/Meta-Llama-3-8B-Instruct",
+  model: 'meta-llama/Meta-Llama-3-8B-Instruct',
   maxTokens: 500,
   temperature: 0.5,
 });
@@ -34,10 +35,10 @@ export async function POST(req: NextRequest) {
     new StringOutputParser(),
   ]);
 
-  console.log("Asking question...");
+  console.log('Asking question...');
 
   const stream = await chain.stream(question);
   const aiStream = LangChainAdapter.toAIStream(stream);
-  
+
   return new StreamingTextResponse(aiStream);
 }

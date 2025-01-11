@@ -1,5 +1,6 @@
-import Form from "../ui/form";
-import Button from "../ui/button";
+import React from 'react';
+import Form from '../ui/form';
+import Button from '../ui/button';
 
 interface FormProps {
   handleFormSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -8,7 +9,12 @@ interface FormProps {
   input: string;
 }
 
-export default function ChatForm({ handleFormSubmit, setMessage, loading, input }: FormProps) {
+export default function ChatForm({
+  handleFormSubmit,
+  setMessage,
+  loading,
+  input,
+}: FormProps) {
   return (
     <Form handleFormSubmit={handleFormSubmit}>
       <input
@@ -18,10 +24,7 @@ export default function ChatForm({ handleFormSubmit, setMessage, loading, input 
         onChange={setMessage}
         disabled={loading}
       />
-      <Button
-        loading={loading}
-        disabled={!input || loading}
-      />
+      <Button loading={loading} disabled={!input || loading} />
     </Form>
-  )
+  );
 }

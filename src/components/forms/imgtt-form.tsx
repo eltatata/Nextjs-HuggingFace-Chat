@@ -1,6 +1,7 @@
-import Form from "../ui/form";
-import Button from "../ui/button";
-import { CircleX } from "lucide-react";
+import React from 'react';
+import Form from '../ui/form';
+import Button from '../ui/button';
+import { CircleX } from 'lucide-react';
 
 interface ImageToTextFormProps {
   handleFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -11,7 +12,14 @@ interface ImageToTextFormProps {
   loading: boolean;
 }
 
-export default function ImageToTextForm({ handleFormSubmit, handleDrop, handleChange, deletePreview, preview, loading }: ImageToTextFormProps) {
+export default function ImageToTextForm({
+  handleFormSubmit,
+  handleDrop,
+  handleChange,
+  deletePreview,
+  preview,
+  loading,
+}: ImageToTextFormProps) {
   return (
     <Form handleFormSubmit={handleFormSubmit}>
       <div
@@ -43,18 +51,17 @@ export default function ImageToTextForm({ handleFormSubmit, handleDrop, handleCh
               className="absolute -top-3 -right-3 bg-red-500 px-1 py-1 rounded-full cursor-pointer"
               onClick={() => deletePreview()}
             >
-              <CircleX
-                className="w-5 h-5 text-white"
-              />
+              <CircleX className="w-5 h-5 text-white" />
             </span>
-            <img src={preview} alt="Preview" className="h-full w-full object-cover rounded-lg" />
+            <img
+              src={preview}
+              alt="Preview"
+              className="h-full w-full object-cover rounded-lg"
+            />
           </div>
         )}
       </div>
-      <Button
-        loading={loading}
-        disabled={!preview || loading}
-      />
+      <Button loading={loading} disabled={!preview || loading} />
     </Form>
-  )
+  );
 }

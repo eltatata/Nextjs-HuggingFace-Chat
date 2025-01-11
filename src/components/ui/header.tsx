@@ -1,34 +1,36 @@
-"use client"
+'use client';
 
-import Link from "next/link";
+import React from 'react';
 
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
 
-import { Logo } from "../icons/logo";
+import { usePathname } from 'next/navigation';
+
+import { Logo } from '../icons/logo';
 
 export default function Header() {
   const pathname = usePathname();
 
   const links = [
     {
-      href: "/",
-      label: "Chat",
-      active: pathname === "/"
+      href: '/',
+      label: 'Chat',
+      active: pathname === '/',
     },
     {
-      href: "/pdf",
-      label: "Chat with PDF",
-      active: pathname == "/pdf"
+      href: '/pdf',
+      label: 'Chat with PDF',
+      active: pathname == '/pdf',
     },
     {
-      href: "/imgtt",
-      label: "Image to Text",
-      active: pathname == "/imgtt"
+      href: '/imgtt',
+      label: 'Image to Text',
+      active: pathname == '/imgtt',
     },
     {
-      href: "/ttimg",
-      label: "Text To Image",
-      active: pathname == "/ttimg"
+      href: '/ttimg',
+      label: 'Text To Image',
+      active: pathname == '/ttimg',
     },
   ];
 
@@ -43,12 +45,12 @@ export default function Header() {
           <Link
             key={`${href}${label}`}
             href={href}
-            className={`${active ? "bg-yellow-700" : "bg-yellow-600 hover:bg-yellow-700"} text-white font-bold py-2 px-4 rounded transition-colors duration-150 ease-in-out`}
+            className={`${active ? 'bg-yellow-700' : 'bg-yellow-600 hover:bg-yellow-700'} text-white font-bold py-2 px-4 rounded transition-colors duration-150 ease-in-out`}
           >
             {label}
           </Link>
         ))}
       </div>
     </div>
-  )
+  );
 }

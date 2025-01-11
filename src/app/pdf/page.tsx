@@ -1,19 +1,23 @@
-"use client"
+'use client';
 
+import React from 'react';
 import { useChat } from '@ai-sdk/react';
 
-import PdfForm from '@/components/forms/pdf-form'
+import PdfForm from '@/components/forms/pdf-form';
 import Messages from '@/components/ui/messages';
 
 export default function PDF() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: "/api/pdf",
-    onResponse: (response) => {
-      if (response.status === 404) {
-        alert("A PDF file was not found. Please upload a PDF file and try again.")
-      };
-    },
-  });
+  const { messages, input, handleInputChange, handleSubmit, isLoading } =
+    useChat({
+      api: '/api/pdf',
+      onResponse: (response) => {
+        if (response.status === 404) {
+          alert(
+            'A PDF file was not found. Please upload a PDF file and try again.',
+          );
+        }
+      },
+    });
 
   return (
     <>
@@ -25,5 +29,5 @@ export default function PDF() {
         input={input}
       />
     </>
-  )
+  );
 }

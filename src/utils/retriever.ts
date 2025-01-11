@@ -1,11 +1,11 @@
-import { MemoryVectorStore } from "langchain/vectorstores/memory";
-import { splits } from "./splitter";
-import { HuggingFaceInferenceEmbeddings } from "@langchain/community/embeddings/hf";
+import { MemoryVectorStore } from 'langchain/vectorstores/memory';
+import { splits } from './splitter';
+import { HuggingFaceInferenceEmbeddings } from '@langchain/community/embeddings/hf';
 
-console.log("Generating embeddings...");
+console.log('Generating embeddings...');
 const vectorStore = await MemoryVectorStore.fromDocuments(
-	splits,
-	new HuggingFaceInferenceEmbeddings()
+  splits,
+  new HuggingFaceInferenceEmbeddings(),
 );
 
 export const retriever = vectorStore.asRetriever();

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 
-import { FileCheck, FileUp } from "lucide-react";
+import { FileCheck, FileUp } from 'lucide-react';
 
-import Form from "../ui/form";
-import Button from "../ui/button";
+import Form from '../ui/form';
+import Button from '../ui/button';
 
 interface FormProps {
   handleFormSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -12,18 +12,25 @@ interface FormProps {
   input: string;
 }
 
-export default function PdfForm({ handleFormSubmit, setMessage, loading, input }: FormProps) {
+export default function PdfForm({
+  handleFormSubmit,
+  setMessage,
+  loading,
+  input,
+}: FormProps) {
   const [isUploaded, setIsUploaded] = useState(false);
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     if (!event.target.files) return;
 
     try {
       const formData = new FormData();
-      formData.set("file", event.target.files[0]);
+      formData.set('file', event.target.files[0]);
 
-      const res = await fetch("/api/pdf/upload", {
-        method: "POST",
+      const res = await fetch('/api/pdf/upload', {
+        method: 'POST',
         body: formData,
       });
 
@@ -37,12 +44,15 @@ export default function PdfForm({ handleFormSubmit, setMessage, loading, input }
 
   return (
     <Form handleFormSubmit={handleFormSubmit}>
-      <label htmlFor="file" className="py-1 px-2 font-medium border border-slate-300 focus:outline-none focus:border-slate-500 rounded-lg">
-        {isUploaded ?
+      <label
+        htmlFor="file"
+        className="py-1 px-2 font-medium border border-slate-300 focus:outline-none focus:border-slate-500 rounded-lg"
+      >
+        {isUploaded ? (
           <FileCheck className="text-green-600" />
-          :
+        ) : (
           <FileUp className="text-blue-600" />
-        }
+        )}
       </label>
       <input
         type="file"
@@ -59,10 +69,7 @@ export default function PdfForm({ handleFormSubmit, setMessage, loading, input }
         onChange={setMessage}
         disabled={loading}
       />
-      <Button
-        loading={loading}
-        disabled={loading}
-      />
+      <Button loading={loading} disabled={loading} />
     </Form>
-  )
+  );
 }

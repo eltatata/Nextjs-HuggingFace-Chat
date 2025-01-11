@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
-import { Message as MessageType } from "@/type";
+import { Message as MessageType } from '@/type';
 
-import Message from "./message";
+import Message from './message';
 
 interface MessageProps {
   messages: MessageType[];
@@ -28,5 +28,5 @@ export default function Messages({ messages }: MessageProps) {
         <Message key={index} message={m} />
       ))}
     </div>
-  )
+  );
 }

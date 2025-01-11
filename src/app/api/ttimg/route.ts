@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import { hf } from "@/utils/inference";
+import { NextRequest, NextResponse } from 'next/server';
+import { hf } from '@/utils/inference';
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,11 +10,13 @@ export async function POST(req: NextRequest) {
       model: 'stabilityai/stable-diffusion-2',
       parameters: {
         negative_prompt: 'blurry',
-      }
+      },
     });
 
     return new Response(image);
-  } catch (error: any) {
-    return NextResponse.json({ err: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
   }
 }
