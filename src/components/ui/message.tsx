@@ -3,6 +3,8 @@ import React from 'react';
 import { Message as MessageType } from '@/type';
 
 import { Bot, User } from 'lucide-react';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface MessageProps {
   message: MessageType;
@@ -33,7 +35,12 @@ export default function Message({ message }: MessageProps) {
             />
           </div>
         ) : (
-          <p className="font-medium">{message.content}</p>
+          <Markdown
+            className="prose max-w-none dark:prose-invert"
+            remarkPlugins={[remarkGfm]}
+          >
+            {message.content}
+          </Markdown>
         )}
       </div>
     </div>
