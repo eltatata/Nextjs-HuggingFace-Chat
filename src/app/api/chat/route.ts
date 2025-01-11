@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
   const { messages } = await req.json();
 
   const response = hf.textGenerationStream({
-    model: 'OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5',
+    model: "meta-llama/Meta-Llama-3-8B-Instruct",
     inputs: experimental_buildOpenAssistantPrompt(messages),
     parameters: {
       max_new_tokens: 500,
